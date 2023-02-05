@@ -8,4 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class lelang extends Model
 {
     use HasFactory;
+    public function lelang()
+    {
+        return $this->belongsTo(barang::class, 'id_barang', 'id');
+    }
 }

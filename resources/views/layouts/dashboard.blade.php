@@ -257,61 +257,52 @@
 
     <ul class="sidebar-nav" id="sidebar-nav">
 
-     @can('superadmin')
+     @can('lelang')
      <li class="nav-item">
-      <a class="nav-link " href="index.html">
+      <a class="nav-link  {{ (request()->routeIs('dashboard')) ? '' : 'collapsed' }}" href="{{ route('dashboard') }}">
         <i class="bi bi-grid"></i>
         <span>Dashboard</span>
       </a>
     </li><!-- End Dashboard Nav -->
-       
-    @elsecan('admin')
+    <li class="nav-item ">
+      <a class="nav-link {{ (request()->routeIs('barang.index')) ? '' : 'collapsed' }}" href="{{ route('barang.index') }}">
+        <i class="bi bi-grid"></i>
+        <span>Barang Lelang anda</span>
+      </a>
+    </li><!-- End Dashboard Nav -->
+   
     <li class="nav-item">
-      <a class="nav-link " href="index.html">
+      <a class="nav-link  {{ (request()->routeIs('lelang')) ? '' : 'collapsed' }}" href="{{ route('lelang',Auth::user()->id) }}">
         <i class="bi bi-grid"></i>
-        <span>Dashboard</span>
-      </a>
-    </li><!-- End Dashboard Nav -->
-    @elsecan('user')
-    <li class="nav-item ">
-      <a class="nav-link {{ (request()->routeIs('')) ? '' : 'collapsed' }}" href="">
-        <i class="bi bi-grid"></i>
-        <span>Keranjang</span>
-      </a>
-    </li><!-- End Dashboard Nav -->
-    <li class="nav-item ">
-      <a class="nav-link {{ (request()->routeIs('/')) ? '' : 'collapsed' }}" href="/">
-        <i class="bi bi-grid"></i>
-        <span>Kembali ke menu</span>
+        <span>Barang yang anda ikuti</span>
       </a>
     </li><!-- End Dashboard Nav -->
       <li class="nav-item ">
       <a class="nav-link {{ (request()->routeIs('')) ? '' : 'collapsed' }} " href="">
         <i class="bi bi-grid"></i>
-        <span>Tiket yang anda pesan</span>
+        <span>History lelang</span>
       </a>
     </li><!-- End Dashboard Nav -->
-     @endcan
-     @can('superadmin')
-      <li class="nav-item">
-        <a class="nav-link collapsed" data-bs-target="#components-nav" data-bs-toggle="collapse" href="#">
-          <i class="bi bi-menu-button-wide"></i><span>Components</span><i class="bi bi-chevron-down ms-auto"></i>
-        </a>
-        <ul id="components-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
-        
-          <li>
-            <a href="/dataadmin">
-            <i class="bi bi-circle"></i><span>Admin</span>
-            </a>
-          </li>
-          <li>
-            <a href="/datauser">
-            <i class="bi bi-circle"></i><span>User</span>
-            </a>
-          </li>
-        </ul>
-      </li>
+       
+    @elsecan('user')
+ 
+    
+    <li class="nav-item">
+      <a class="nav-link  {{ (request()->routeIs('lelang')) ? '' : 'collapsed' }}" href="{{ route('lelang',Auth::user()->id) }}">
+        <i class="bi bi-grid"></i>
+        <span>Barang yang anda ikuti</span>
+      </a>
+    </li><!-- End Dashboard Nav -->
+     
+     
+      
           @elsecan('admin')
+          <li class="nav-item">
+            <a class="nav-link " href="index.html">
+              <i class="bi bi-grid"></i>
+              <span>Dashboard</span>
+            </a>
+          </li><!-- End Dashboard Nav -->
           <li class="nav-item">
             <a class="nav-link collapsed" data-bs-target="#components-nav" data-bs-toggle="collapse" href="#">
               <i class="bi bi-menu-button-wide"></i><span>Components</span><i class="bi bi-chevron-down ms-auto"></i>
@@ -340,7 +331,7 @@
           </li>
         </ul>
       </li>
-          @elsecan('user')
+          
        
           @endcan
 			

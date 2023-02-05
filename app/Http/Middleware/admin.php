@@ -16,7 +16,7 @@ class admin
      */
     public function handle(Request $request, Closure $next)
     {
-        if(!auth()->check() || auth()->user()->level !== 2){
+        if(!auth()->check() || auth()->user()->level !== 3){
             abort(403);
        }
         return $next($request);

@@ -8,4 +8,17 @@ use Illuminate\Database\Eloquent\Model;
 class barang extends Model
 {
     use HasFactory;
+    protected $fillable = [
+        'name',
+        'waktu',
+        'harga_awal',
+        'image',
+        'deskripsi_awal',
+    ];
+    public function lelangs()
+    {
+        return $this->hasMany(lelang::class, 'id_barang', 'id');
+    }
 }
+
+

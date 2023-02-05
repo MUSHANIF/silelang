@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\lelang;
+use App\Models\barang;
 use App\Http\Requests\StorelelangRequest;
+use Auth;
+use Illuminate\Http\Request;    
 use App\Http\Requests\UpdatelelangRequest;
 
 class LelangController extends Controller
@@ -13,6 +16,30 @@ class LelangController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function tambah(Request $request , $id)
+    {
+        $data = lelang::where('userid',$id)->where('id_barang',$request->id )->where('status','dibuka')->first();
+        if( $data){
+            toastr()->error('barang ini sudah anda pesan!', 'gagal');
+            return Redirect::back()->with('error','barang ini sudah anda pesan!');
+        }else{
+           
+            $model = new lelang;
+            $model->userid = $request->userid;
+            $model->id_barang = $request->id_barang;
+            $model->tgl_lelang = $request->waktu;
+            $model->harga_akhir = $request->harga_akhir;
+            $model->status = $request->status;                                    
+            $model->save(); 
+            
+            return redirect()->route('lelang', Auth::id())->with('success','berhasil di tambahkan di daftar lelang anda');
+        } 
+    }
+    public function lelang(Request $request , $id)
+    {
+        $datas = lelang::with(['lelang'])->where('userid', $id)->where('status', 'dibuka')->get();
+        return view('user.lelang.index', compact('datas'));
+    }
     public function index()
     {
         //
