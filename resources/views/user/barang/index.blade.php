@@ -33,7 +33,7 @@
             <th scope="col">Nama barang</th>
             <th scope="col">Waktu</th>
             <th scope="col">Harga awal</th>
-            <th scope="col">Deskripsi awal</th>            
+            <th scope="col">Status</th>            
             <th scope="col">Action</th>
        
           </tr>
@@ -53,11 +53,15 @@
               
             </td>
             <td>
-              {{ $key->deskripsi_awal }}                           
+              @if ( $key->status === "dibuka" )
+              <span class="card text-bg-success p-1 text-white text-center">Masih di buka</span>
+              @else
+              <span class="card text-bg-danger p-1 text-white text-center">Sudah di tutup</span>
+              @endif                        
             </td>
             <td> 
               <a href="{{ route('barang.edit',$key->id) }}" class="btn btn-success"><i class="bi bi-pencil-fill"></i></a>
-            
+              <a href="{{ route('barang.show',$key->id) }}" class="btn btn-success"><i class="bi bi-bookmarks-fill"></i></a>
               <form action="{{ url('barang/'.$key->id) }}" method="POST" >
                 @csrf
                 <input type="hidden" name="_method" value="DELETE">

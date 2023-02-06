@@ -72,10 +72,10 @@
                                           Selamat datang  {{ Auth::user()->name }}
                                           </a>
                                           <ul class="dropdown-menu">
-                                              @can('superadmin')
-                                              <li><a class="dropdown-item" href="{{ route('dashboardsuperadmin') }}">Dashboard</a></li>
-                                              @elsecan('user')
+                                              @can('lelang')
                                               <li><a class="dropdown-item" href="{{ route('dashboard') }}">Dashboard</a></li>
+                                              @elsecan('user')
+                                              <li><a class="dropdown-item" href="{{ route('lelanguser',Auth::user()->id) }}">Dashboard</a></li>
                                               @elsecan('admin')
                                               <li><a class="dropdown-item" href="{{ route('dashboardAdmin') }}">Dashboard</a></li>
                                               @endcan                                                                                  

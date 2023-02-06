@@ -13,6 +13,11 @@ class HistoryLelangController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function lelang($id)
+    {
+        $datas = history_lelang::with(['silelang','barangs','iduser'])->where('userid', $id)->get();
+        return view('user.history.index', compact('datas'));
+    }
     public function index()
     {
         //

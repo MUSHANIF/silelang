@@ -278,7 +278,7 @@
       </a>
     </li><!-- End Dashboard Nav -->
       <li class="nav-item ">
-      <a class="nav-link {{ (request()->routeIs('')) ? '' : 'collapsed' }} " href="">
+      <a class="nav-link {{ (request()->routeIs('history',Auth::user()->id)) ? '' : 'collapsed' }} " href="{{ route('history',Auth::user()->id) }}">
         <i class="bi bi-grid"></i>
         <span>History lelang</span>
       </a>
@@ -288,7 +288,7 @@
  
     
     <li class="nav-item">
-      <a class="nav-link  {{ (request()->routeIs('lelang')) ? '' : 'collapsed' }}" href="{{ route('lelang',Auth::user()->id) }}">
+      <a class="nav-link  {{ (request()->routeIs('lelanguser',Auth::user()->id)) ? '' : 'collapsed' }}" href="{{ route('lelanguser',Auth::user()->id) }}">
         <i class="bi bi-grid"></i>
         <span>Barang yang anda ikuti</span>
       </a>
@@ -389,6 +389,7 @@
   </footer><!-- End Footer -->
 
   <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+ 
   <script type="text/javascript">
     $(document).ready(function (e) {
        $("#image").change(function () {

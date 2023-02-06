@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\barang;
+use App\Models\lelang;
 use App\Http\Requests\StorebarangRequest;
 use App\Http\Requests\UpdatebarangRequest;
 use Illuminate\Support\Facades\DB;
@@ -67,7 +68,16 @@ class BarangController extends Controller
      */
     public function show(barang $barang)
     {
-        //
+        $barang = barang::first();
+        $barangs = $barang->id;       
+        $lelang = lelang::where('id_barang' , $barangs)->first();
+        
+        $id = $lelang->id_barang;
+        $ke = lelang::where('id_barang' , $barangs)->max('harga_akhir');
+   
+        $datas  = barang::with(['lelangs'])->find($barang);
+        
+        return view('user.barang.detail',compact('datas','ke','id'));
     }
 
     /**
@@ -76,9 +86,11 @@ class BarangController extends Controller
      * @param  \App\Models\barang  $barang
      * @return \Illuminate\Http\Response
      */
-    public function edit(barang $barang)
+    public function edit( $id)
     {
-        //
+        
+        $datas  = barang::find($id);
+        return view('user.barang.ubah',compact('datas'));
     }
 
     /**
