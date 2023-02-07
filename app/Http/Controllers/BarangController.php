@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\barang;
+use Auth;
 use App\Models\lelang;
 use App\Http\Requests\StorebarangRequest;
 use App\Http\Requests\UpdatebarangRequest;
@@ -16,10 +17,19 @@ class BarangController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function tampil(Request $request)
+    {
+        $cari = $request->cari;
+        $datas =  barang::with(['lelangs'])->get(); 
+        $banyak = barang::join('lelangs', 'lelangs.id_barang', '=', 'barangs.id')->max('lelangs.harga_akhir');
+        
+        return view('admin.barang.index', compact('datas','banyak'));
+    }
     public function index(Request $request)
     {
         $cari = $request->cari;
-        $datas =  barang::all();
+        $datas =  barang::where('userid', Auth::user()->id);
+        
         
         return view('user.barang.index', compact('datas'));
     }

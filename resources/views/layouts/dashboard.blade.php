@@ -298,37 +298,24 @@
       
           @elsecan('admin')
           <li class="nav-item">
-            <a class="nav-link " href="index.html">
+            <a class="nav-link  {{ (request()->routeIs('dashboardAdmin')) ? '' : 'collapsed' }}" href="{{ route('dashboardAdmin') }}">
               <i class="bi bi-grid"></i>
               <span>Dashboard</span>
             </a>
           </li><!-- End Dashboard Nav -->
           <li class="nav-item">
-            <a class="nav-link collapsed" data-bs-target="#components-nav" data-bs-toggle="collapse" href="#">
-              <i class="bi bi-menu-button-wide"></i><span>Components</span><i class="bi bi-chevron-down ms-auto"></i>
+            <a class="nav-link {{ (request()->routeIs('barang')) ? '' : 'collapsed' }}" href="{{ route('barangadmin') }}  ">
+              <i class="bi bi-grid"></i>
+              <span>Barang</span>
             </a>
-            <ul id="components-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
-          <li>
-            <a href="/jns ">
-            <i class="bi bi-circle"></i><span>Lelang</span>
+          </li><!-- End Dashboard Nav -->
+          <li class="nav-item">
+            <a class="nav-link  {{ (request()->routeIs('historyadmin')) ? '' : 'collapsed' }}" href="/historyadmin">
+              <i class="bi bi-grid"></i>
+              <span>History lelang</span>
             </a>
-          </li>
-          <li>
-            <a href="/layanan">
-            <i class="bi bi-circle"></i><span>layanan</span>
-            </a>
-          </li>
-         
-          <li>
-            <a href="/kursi">
-            <i class="bi bi-circle"></i><span>Kursi</span>
-            </a>
-          </li>
-          <li>
-            <a href="/laporan">
-            <i class="bi bi-circle"></i><span>laporan</span>
-            </a>
-          </li>
+          </li><!-- End Dashboard Nav -->
+
         </ul>
       </li>
           

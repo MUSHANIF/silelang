@@ -76,7 +76,12 @@ class LelangController extends Controller
         $model->id_lelang = $request->id;
         $model->penawaran_harga = $request->penawaran_harga;
         $model->save();
-        return  redirect()->back()->with('success','Berhasil di terima');
+        if(Auth::user()->level == 'lelang'){
+            return redirect()->route('history', Auth::id())->with('success','Berhasil di terima');
+        }else{
+            return redirect()->route('historyuser', Auth::id())->with('success','Berhasil di terima');
+        }
+        
     }
     public function index()
     {

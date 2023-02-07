@@ -25,17 +25,14 @@ class AuthenticatedSessionController extends Controller
      */
     public function store(LoginRequest $request): RedirectResponse
     {
-        $request->authenticate();
-
-       
-
+        $request->authenticate();       
         $request->session()->regenerate();
         if (auth()->user()->level == 3) {
             toastr()->success('Salam sehat!', 'Selamat datang superadmin!');
-            return redirect()->intended(RouteServiceProvider::SUPERADMIN)->with('Berhasil login','halo selamat datang!');;
+            return redirect()->intended(RouteServiceProvider::ADMIN)->with('Berhasil login','halo selamat datang!');
         }elseif(auth()->user()->level == 2){
             toastr()->success('Salam sehat!', 'Selamat datang admin!');
-            return redirect()->intended(RouteServiceProvider::ADMIN)->with('Berhasil login','halo selamat datang!');;
+            return redirect()->intended(RouteServiceProvider::HOME)->with('Berhasil login','halo selamat datang!');
         }
         toastr()->success('Selamat datang!', 'Halo');
         return redirect()->intended(RouteServiceProvider::HOME2)->with('Berhasil login','halo selamat datang!');

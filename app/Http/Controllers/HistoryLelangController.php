@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\history_lelang;
+use App\Models\barang;
+use Auth;
 use App\Http\Requests\Storehistory_lelangRequest;
 use App\Http\Requests\Updatehistory_lelangRequest;
 
@@ -20,7 +22,9 @@ class HistoryLelangController extends Controller
     }
     public function index()
     {
-        //
+        $datas = history_lelang::with(['silelang','barangs','iduser'])->get();
+        $banyak = barang::join('history_lelangs', 'history_lelangs.id_barang', '=', 'barangs.id')->max('history_lelangs.penawaran_harga');
+        return view('admin.history.index', compact('datas','banyak'));
     }
 
     /**

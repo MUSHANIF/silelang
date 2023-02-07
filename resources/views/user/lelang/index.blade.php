@@ -86,7 +86,12 @@
             </td>
             <td> 
               @if ($menang)
-              <form action="{{ url('terima/'.$key->id) }}" method="POST" >
+              @can('lelang')
+                <form action="{{ url('terima/'.$key->id) }}" method="POST" >
+              @elsecan('user')  
+                <form action="{{ url('terimauser/'.$key->id) }}" method="POST" >
+              @endcan
+              
                 @csrf
                 <input type="hidden" name="id_barang" value="{{ $key->id_barang }}">
                 <input type="hidden" name="userid" value="{{ $key->userid }}">
