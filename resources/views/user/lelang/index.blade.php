@@ -97,7 +97,10 @@
                 <input type="hidden" name="userid" value="{{ $key->userid }}">
                 <input type="hidden" name="id" value="{{ $key->id }}">
                 <input type="hidden" name="penawaran_harga" value="{{ $key->harga_akhir }}">
+                @if ($key->status === "ditutup")
                 <button type="submit" class="btn btn-success">Terima & ambil</button>
+                @endif
+              
                 
             </form>
             @else

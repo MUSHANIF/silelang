@@ -8,14 +8,14 @@
     
 
     <div class="card-body">
-      <h5 class="card-title">Transaksi <span>| Today</span></h5>
+      <h5 class="card-title">Lelang <span>| Today</span></h5>
 
       <div class="d-flex align-items-center">
         <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
           <i class="bi bi-cart"></i>
         </div>
         <div class="ps-3">
-          <h6></h6>
+          <h6>{{ $lelang }}</h6>
        
 
         </div>
@@ -32,14 +32,14 @@
    
 
     <div class="card-body">
-      <h5 class="card-title">Layanan</h5>
+      <h5 class="card-title">Total barang</h5>
 
       <div class="d-flex align-items-center">
         <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
           <i class="bi bi-currency-dollar"></i>
         </div>
         <div class="ps-3">
-          <h6></h6>
+          <h6>{{ $barangadmin }}</h6>
           <span class="text-success small pt-1 fw-bold">8%</span> <span class="text-muted small pt-2 ps-1">Peningkatan</span>
 
         </div>
@@ -64,8 +64,8 @@
           <i class="bi bi-people"></i>
         </div>
         <div class="ps-3">
-          <h6></h6>
-          <span class="text-danger small pt-1 fw-bold">12%</span> <span class="text-muted small pt-2 ps-1">Penurunan</span>
+          <h6>{{ $user }}</h6>
+         
 
         </div>
       </div>

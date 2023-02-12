@@ -28,7 +28,7 @@ class BarangController extends Controller
     public function index(Request $request)
     {
         $cari = $request->cari;
-        $datas =  barang::where('userid', Auth::user()->id);
+        $datas =  barang::where('userid', Auth::user()->id)->get();
         
         
         return view('user.barang.index', compact('datas'));

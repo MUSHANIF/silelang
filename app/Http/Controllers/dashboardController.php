@@ -14,6 +14,9 @@ class dashboardController extends Controller
                 
             'pembeli' => lelang::where('userid','=', Auth::user()->id)->count(),
             'barang' => barang::where('userid','=', Auth::user()->id)->count(),
+            'barangadmin' => barang::count(),
+            'lelang' => lelang::count(),
+            'user' => User::count(),
             // 'admin' => User::where('level', '=', 2)->count(),
             // 'transaksi' => transaksi::count(),
             // 'layanan' => layanan::where('status', '=', 1)->count(),

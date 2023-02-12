@@ -37,8 +37,12 @@ class LelangController extends Controller
             $model->harga_akhir = $request->harga_akhir;
             $model->status = $request->status;                                    
             $model->save(); 
-            
-            return redirect()->route('lelang', Auth::id())->with('success','berhasil di tambahkan di daftar lelang anda');
+            if (Auth::user()->level == 2) {
+                return redirect()->route('lelang', Auth::id())->with('success','berhasil di ubah di daftar lelang anda');
+            }elseif(Auth::user()->level == 1){
+    
+                return redirect()->route('lelanguser', Auth::id())->with('success','berhasil di ubah di daftar lelang anda');
+            }
         } 
     }
     public function lelang(Request $request , $id)  
